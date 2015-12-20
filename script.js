@@ -1,56 +1,76 @@
-// Load JavaScript when DOM loading is done
-
-$(document).ready(handler);
-
 // Create array and push kitten contestants inside. Awwwwwwwwww so cute.
 
 this.kittenVote = [];
 
-var contestants = function kittens(name,pic) {
+var contestants = function kittens(id,name,pic) {
+  this.id = id;
   this.name = name;
   this.pic = pic;
 }
 
-var kOne = new kittens("Bella","img/01")
-var kTwo = new kittens("Kuro","img/02")
-var kThree = new kittens("Tibby","img/03")
-var kFour = new kittens("Shoestring","img/04")
-var kFive = new kittens("Ginny","img/05")
-var kSix = new kittens("The Rosie Family","img/06")
-var kSeven = new kittens("Boots","img/07")
-var kEight = new kittens("Tiggy","img/08")
-var kNine = new kittens("Sheets","img/09")
-var kTen = new kittens("Spidercat","img/10")
-var kEleven = new kittens("OmNomNom","img/11")
-var kTwelve = new kittens("Sunny","img/12")
-var kThirteen = new kittens("Nibbler","img/13")
-var kFourteen = new kittens("Soul Crusher von Rektienschnein the IX","img/14")
+var kOne = new contestants(1,"Bella","img/01.jpg")
+var kTwo = new contestants(2,"Kuro","img/02.jpg")
+var kThree = new contestants(3,"Tibby","img/03.jpg")
+var kFour = new contestants(4,"Shoestring","img/04.jpg")
+var kFive = new contestants(5,"Ginny","img/05.jpg")
+var kSix = new contestants(6,"The Rosie Family","img/06.jpg")
+var kSeven = new contestants(7,"Boots","img/07.jpg")
+var kEight = new contestants(8,"Tiggy","img/08.jpg")
+var kNine = new contestants(9,"Sheets","img/09.jpg")
+var kTen = new contestants(10,"Spidercat","img/10.jpg")
+var kEleven = new contestants(11,"OmNomNom","img/11.jpg")
+var kTwelve = new contestants(12,"Sunny","img/12.jpg")
+var kThirteen = new contestants(13,"Nibbler","img/13.jpg")
+var kFourteen = new contestants(14,"Soul Crusher von Rektienschnein the IX","img/14.jpg")
 
-kittenvote.push(kOne);
-kittenvote.push(kTwo);
-kittenvote.push(kThree);
-kittenvote.push(kFour);
-kittenvote.push(kFive);
-kittenvote.push(kSix);
-kittenvote.push(kSeven);
-kittenvote.push(kEight);
-kittenvote.push(kNine);
-kittenvote.push(kTen);
-kittenvote.push(kEleven);
-kittenvote.push(kTwelve);
-kittenvote.push(kThirteen);
+kittenVote.push(kOne);
+kittenVote.push(kTwo);
+kittenVote.push(kThree);
+kittenVote.push(kFour);
+kittenVote.push(kFive);
+kittenVote.push(kSix);
+kittenVote.push(kSeven);
+kittenVote.push(kEight);
+kittenVote.push(kNine);
+kittenVote.push(kTen);
+kittenVote.push(kEleven);
+kittenVote.push(kTwelve);
+kittenVote.push(kThirteen);
+
+console.log(kittenVote)
 
 // Random selection of two kitten contestants
+var kittyRandom = function randomCat() {
+  return Math.floor(Math.random() * (14 - 1 + 1)) + 1;
+};
 
-// Prompt user to vote on two more kittens (preferrably with AJAX loading)
+var $kittenOne = $('#kittenOne');
+var $kittenTwo = $('#kittenTwo');
+var rdmIntOne = kittyRandom();
+var rdmIntTwo = kittyRandom();
+console.log(rdmIntOne);
+console.log(rdmIntTwo);
 
-var xhttp;
-if (window.XMLHttpRequest) {
-    xhttp = new XMLHttpRequest();
-    } else {
-    // code for IE6, IE5
-    xhttp = new ActiveXObject("Microsoft.XMLHTTP");
-}
+var firstKitten = kittenVote.forEach(function (cat) {
+  if (rdmIntOne === cat.id) {
+    $kittenOne.html("<img src=" + cat.pic+"></img>");
+    console.log(rdmIntOne);
+  };
+});
+
+var secondKitten = kittenVote.forEach(function (cat) {
+  while (rdmIntTwo === rdmIntOne) {
+    rdmIntTwo = kittyRandom();
+  };
+
+  if (rdmIntTwo === cat.id) {
+    $kittenTwo.html("<img src=" + cat.pic + "></img>");
+    console.log(rdmIntTwo);
+  }
+});
+console.log(rdmIntTwo);
+
+// Prompt user to vote on two more kittens
 
 // Store voting results in localStorage
 
