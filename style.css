@@ -1,0 +1,76 @@
+html, body {
+  height: 100%;
+  width:100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  display: flex;
+  flex: 1;
+}
+
+main {
+  flex: 3;
+  order: 2;
+}
+
+nav, aside {
+  flex: 0 0 12em;
+}
+
+nav {
+  order: 1;
+  flex: 1;
+}
+
+/*aside {
+  order: 3;
+  flex: 1;
+}
+*/
+.navBtn {
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  padding: 20px;
+  font-size: 20px;
+  opacity: .5;
+  transition: all .75s;
+  text-align: center;
+  cursor: pointer;
+  border: none;
+}
+
+.navBtn a {
+  text-decoration: none;
+  color:black;
+  display: inline-block;
+  position: relative;
+  transition: .75s;
+}
+
+.navBtn a:after {
+  content: '>';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: .75s;
+}
+
+.navBtn:hover a {
+  padding-right: 25px;
+}
+
+.navBtn:hover {
+  opacity: 1;
+}
+
+.navBtn:hover a:after {
+  opacity: 1;
+  right: 0;
+}
