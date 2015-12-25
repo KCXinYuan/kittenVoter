@@ -27,20 +27,11 @@ main {
   width:100%;
 }
 
-nav, aside {
-  flex: 0 0 12em;
-}
-
 nav {
   order: 1;
   flex: 1;
 }
 
-/*aside {
-  order: 3;
-  flex: 1;
-}
-*/
 .navBtn {
   display: inline-block;
   width: 100%;
@@ -83,3 +74,4 @@ nav {
   opacity: 1;
   right: 0;
 }
+
