@@ -1,7 +1,8 @@
-
 // Create array and push kitten contestants inside. Awwwwwwwwww so cute.
 
 this.kittenVote = [];
+$localStorage = $('localStorage');
+
 $(document).ready(function(){
 
 var contestants = function kittens(id,name,pic,votes) {
@@ -11,20 +12,20 @@ var contestants = function kittens(id,name,pic,votes) {
   this.votes = votes
 }
 
-var kOne = new contestants(1,"Bella","img/01.jpg",0)
-var kTwo = new contestants(2,"Kuro","img/02.jpg",0)
-var kThree = new contestants(3,"Tibby","img/03.jpg",0)
-var kFour = new contestants(4,"Shoestring","img/04.jpg",0)
-var kFive = new contestants(5,"Ginny","img/05.jpg",0)
-var kSix = new contestants(6,"The Rosie Family","img/06.jpg",0)
-var kSeven = new contestants(7,"Boots","img/07.jpg",0)
-var kEight = new contestants(8,"Tiggy","img/08.jpg",0)
-var kNine = new contestants(9,"Sheets","img/09.jpg",0)
-var kTen = new contestants(10,"Spidercat","img/10.jpg",0)
-var kEleven = new contestants(11,"OmNomNom","img/11.jpg",0)
-var kTwelve = new contestants(12,"Sunny","img/12.jpg",0)
-var kThirteen = new contestants(13,"Nibbler","img/13.jpg",0)
-var kFourteen = new contestants(14,"Soul Crusher von Rektienschnein the IX","img/14.jpg",0)
+var kOne = new contestants(0,"Bella","img/01.jpg",0)
+var kTwo = new contestants(1,"Kuro","img/02.jpg",0)
+var kThree = new contestants(2,"Tibby","img/03.jpg",0)
+var kFour = new contestants(3,"Shoestring","img/04.jpg",0)
+var kFive = new contestants(4,"Ginny","img/05.jpg",0)
+var kSix = new contestants(5,"The Rosie Family","img/06.jpg",0)
+var kSeven = new contestants(6,"Boots","img/07.jpg",0)
+var kEight = new contestants(7,"Tiggy","img/08.jpg",0)
+var kNine = new contestants(8,"Sheets","img/09.jpg",0)
+var kTen = new contestants(9,"Spidercat","img/10.jpg",0)
+var kEleven = new contestants(10,"OmNomNom","img/11.jpg",0)
+var kTwelve = new contestants(11,"Sunny","img/12.jpg",0)
+var kThirteen = new contestants(12,"Nibbler","img/13.jpg",0)
+var kFourteen = new contestants(13,"Soul Crusher von Rektienschnein the IX","img/14.jpg",0)
 
 kittenVote.push(kOne);
 kittenVote.push(kTwo);
@@ -39,12 +40,26 @@ kittenVote.push(kTen);
 kittenVote.push(kEleven);
 kittenVote.push(kTwelve);
 kittenVote.push(kThirteen);
+kittenVote.push(kFourteen);
 
 console.log(kittenVote)
 
+var initialize = function() { // create localStorage to store votes if needed
+  if (localStorage.votes == null) {
+    localStorage.setItem("votes", JSON.stringify(kittenVote));
+  }
+  else {
+    console.log('good to go');
+  }
+}
+
+initialize();
+
+console.log(localStorage);
+
 // Random selection of two kitten contestants
 var kittyRandom = function randomCat() {
-  return Math.floor(Math.random() * (14 - 1 + 1)) + 1;
+  return Math.floor(Math.random() * (14));
 };
 
 var $kittenOne = $('#kittenOne');
@@ -53,6 +68,7 @@ var $nameOne = $('#nameOne');
 var $nameTwo = $('#nameTwo');
 var rdmIntOne = kittyRandom();
 var rdmIntTwo = kittyRandom();
+
 console.log(rdmIntOne);
 console.log(rdmIntTwo);
 
@@ -77,25 +93,61 @@ var secondKitten = kittenVote.forEach(function (cat) {
 });
 //console.log(rdmIntTwo);
 
-// Button voting
+
+
+// Button Vote
 
 var $kittenOneBtn = $('#kittenOneBtn');
 var $kittenTwoBtn = $('#kittenTwoBtn');
 
 $kittenOneBtn.click(function() {
-  kittenVote[rdmIntOne].votes += 1;
-  console.log(kittenVote[rdmIntOne].votes);
-})
+  var votes = JSON.parse(localStorage.votes);
+  votes.forEach(function(kitten) {
+    if(rdmIntOne === kitten.id) {
+      kitten.votes += 1;
+      console.log(kitten);
+    }
+  })
+  localStorage.setItem("votes", JSON.stringify(votes));
+  console.log(localStorage);
+});
 
 $kittenTwoBtn.click(function() {
-  kittenVote[rdmIntTwo].votes += 1;
-  console.log(kittenVote[rdmIntTwo].votes);
-})
+  var votes = JSON.parse(localStorage.votes);
+  votes.forEach(function(kitten) {
+    if(rdmIntTwo === kitten.id) {
+      kitten.votes += 1;
+      console.log(kitten);
+    }
+  })
+  localStorage.setItem("votes", JSON.stringify(votes));
+});
 
 // Display results on a chart
+var localVotes = JSON.parse(localStorage.getItem("votes"));
+var createChart = function () {
+var ctx = $("#kittenChart").get(0).getContext("2d");
+var kittenChart = new Chart(ctx);
 
-// Prompt user to vote on two more kittens
+var data = {
+    labels: [kittenVote[rdmIntOne].name, kittenVote[rdmIntTwo].name],
+    datasets: [
+        {
+            label: "Votes",
+            fillColor: "rgba(220,220,220,0.5)",
+            strokeColor: "rgba(220,220,220,0.8)",
+            highlightFill: "rgba(220,220,220,0.75)",
+            highlightStroke: "rgba(220,220,220,1)",
+            data: [localVotes[rdmIntOne].votes,localVotes[rdmIntTwo].votes]
+        }
+    ]
+};
 
-// Store voting results in localStorage
+var kittenBar = new Chart(ctx).Bar(data);
+}
+
+$showRslt = $('#showRslt');
+$showRslt.on('click',createChart)
+// Promote user to vote again
 
 });
