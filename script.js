@@ -25,7 +25,7 @@ $(document).ready(function(){
   var kEleven = new contestants(10,"OmNomNom","img/11.jpg",0);
   var kTwelve = new contestants(11,"Sunny","img/12.jpg",0);
   var kThirteen = new contestants(12,"Nibbler","img/13.jpg",0);
-  var kFourteen = new contestants(13,"Soul Crusher von Rektienschnein the IX","img/14.jpg",0);
+  var kFourteen = new contestants(13,"Soul","img/14.jpg",0);
 
   kittenVote.push(kOne);
   kittenVote.push(kTwo);
@@ -74,7 +74,7 @@ $(document).ready(function(){
 
   var firstKitten = kittenVote.forEach(function (cat) {
     if (rdmIntOne === cat.id) {
-      $kittenOne.html("<img src=" + cat.pic+"></img>");
+      $kittenOne.html("<img id='imgOne'src=" + cat.pic+"></img>");
       $nameOne.html(cat.name);
       //console.log(rdmIntOne);
     };
@@ -86,7 +86,7 @@ $(document).ready(function(){
     };
 
     if (rdmIntTwo === cat.id) {
-      $kittenTwo.html("<img src=" + cat.pic + "></img>");
+      $kittenTwo.html("<img id='imgTwo'src=" + cat.pic + "></img>");
       $nameTwo.html(cat.name);
       //console.log(rdmIntTwo);
     }
@@ -140,10 +140,10 @@ $(document).ready(function(){
       datasets: [
           {
               label: "Votes",
-              fillColor: "rgba(220,220,220,0.5)",
-              strokeColor: "rgba(220,220,220,0.8)",
-              highlightFill: "rgba(220,220,220,0.75)",
-              highlightStroke: "rgba(220,220,220,1)",
+              fillColor: "#1695A3",
+              strokeColor: "#1695A3",
+              highlightFill: "#1695A3",
+              highlightStroke: "#1695A3",
               data: [afterVoteOne,afterVoteTwo]
           }
       ]
@@ -154,8 +154,36 @@ $(document).ready(function(){
 
   $showRslt = $('#showRslt');
   $showRslt.on('click',createChart)
-  // Promote user to vote again
 
 
+  // Highlight winner and promote user to vote again
+
+  $reset = $('#reset');
+  $imgOne = $('#imgOne');
+  $imgTwo = $('#imgTwo');
+
+  $kittenOneBtn.click(function() {
+    $kittenOneBtn.hide(1000);
+    $kittenTwoBtn.hide(1000);
+    $showRslt.show(1000);
+    $imgOne.addClass('winner');
+
+  });
+
+  $kittenTwoBtn.click(function() {
+    $kittenOneBtn.hide(1000);
+    $kittenTwoBtn.hide(1000);
+    $showRslt.show(1000);
+    $imgTwo.addClass('winner');
+  });
+
+  $showRslt.click(function(){
+    $showRslt.hide(1000);
+    $reset.show(1000);
+  });
+
+  $reset.click(function() {
+    location.reload();
+  });
 
 });
