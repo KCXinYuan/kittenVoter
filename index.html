@@ -10,20 +10,34 @@
     <script src="script.js"></script>
   </head>
   <body>
-    <header>Vote for the cutest cat!</header>
+
+    <header>
+      <h1>Vote for the cutest cat!</h1>
+    </header>
+
     <div class='container'>
       <main>
+
         <div id="contOne">
           <div id="kittenOne">Kitten One</div>
           <p id="nameOne"></p>
-          <button id="kittenOneBtn">Vote for me!</button>
+          <div class="btnDiv"><button id="kittenOneBtn">Vote for me!</button></div>
         </div>
-        <span> <canvas id="kittenChart" width="300" height="300"></canvas> <button id="showRslt">Results</button></span>
+
+        <div id="kittenTable">
+          <canvas id="kittenChart" width="300" height="300"></canvas>
+
+          <div class="btnDivRslt"><button id="showRslt" style="display:none">Results</button></div>
+
+          <div class="btnDivReset"><button id="reset" style="display:none">Vote Again?</button></div>
+        </div>
+
         <div id="contTwo">
           <div id="kittenTwo">Kitten Two</div>
           <p id="nameTwo"></p>
-          <button id="kittenTwoBtn">Vote for me!</button>
+          <div class="btnDiv"><button id="kittenTwoBtn">Vote for me!</button></div>
         </div>
+
       </main>
     </div>
     <footer></footer>
