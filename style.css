@@ -1,5 +1,6 @@
 * {
   font-family: chewy;
+  text-align: center;
 }
 
 html, body {
@@ -19,59 +20,12 @@ body {
 
 main {
   display: flex;
-  flex: 3;
-  order: 2;
   flex-direction: row;
   justify-content: space-around;
   margin: auto;
   width:100%;
 }
 
-nav {
-  order: 1;
-  flex: 1;
-}
+#kittenOneBtn, #kittenTwoBtn {
 
-.navBtn {
-  display: inline-block;
-  width: 100%;
-  text-align: center;
-  padding: 20px;
-  font-size: 20px;
-  opacity: .5;
-  transition: all .75s;
-  text-align: center;
-  cursor: pointer;
-  border: none;
 }
-
-.navBtn a {
-  text-decoration: none;
-  color:black;
-  display: inline-block;
-  position: relative;
-  transition: .75s;
-}
-
-.navBtn a:after {
-  content: '>';
-  position: absolute;
-  opacity: 0;
-  top: 0;
-  right: -20px;
-  transition: .75s;
-}
-
-.navBtn:hover a {
-  padding-right: 25px;
-}
-
-.navBtn:hover {
-  opacity: 1;
-}
-
-.navBtn:hover a:after {
-  opacity: 1;
-  right: 0;
-}
-
